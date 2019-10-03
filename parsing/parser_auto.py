@@ -3,6 +3,7 @@ from datetime import datetime
 import requests, time, csv
 from bs4 import BeautifulSoup
 
+
 def auto_parce(url):
     print('start parsing')
     auto_url = url
