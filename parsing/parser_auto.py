@@ -49,8 +49,9 @@ def auto_item():
         if item_info:
             soup = BeautifulSoup(item_info, 'html.parser')
 
+            avito_item_number = parser_lib.get_item_number(soup)
             title = parser_lib.get_title(soup)
-            published = parser_lib.get_published(soup)
+            published = datetime.now().strftime('%d.%m.%Y %H:%M')
             price = parser_lib.get_price(soup)
             seller = parser_lib.get_seller(soup)
             phone = parser_lib.get_phone(soup)
@@ -58,6 +59,7 @@ def auto_item():
             all_specs = parser_lib.get_all_specs(soup)
 
             car_full_info.append({
+                'avito_item_number': avito_item_number,
                 'title': title,
                 'published': published,
                 'price': price,

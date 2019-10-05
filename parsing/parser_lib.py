@@ -3,21 +3,21 @@ from datetime import datetime
 import requests, time, csv
 from bs4 import BeautifulSoup
 
+def get_item_number(get_item_number_text):
+    try:
+        item = get_item_number_text.find('div', class_="item-view-search-info-redesign").find('span').text
+        print(item)
+        item = item.split(' ')[1]
+    except (ValueError, AttributeError):
+        item = None
+    return item
+
 def get_title(title_text):
     try:
         title = title_text.find('span', class_="title-info-title-text").text
     except (ValueError, AttributeError):
         title = None
     return title
-
-def get_published(published_text):
-    try:
-        published = published_text.find('div', class_="title-info-metadata-item-redesign").text
-        published = datetime.strptime(published, '%Y-%m-%d')
-    except (ValueError, AttributeError):
-        published = datetime.now()
-        published = published.strftime('%d.%m.%Y %H:%M')
-    return published
 
 def get_price(price_text):
     try:
