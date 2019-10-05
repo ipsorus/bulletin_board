@@ -1,6 +1,11 @@
+import datetime
+
 from django.db import models
+from django.utils import timezone
+
 
 class Car(models.Model):
+   
     car_title = models.CharField( max_length= 100)
     pub_date = models.DateTimeField()
     price = models.FloatField()
@@ -8,6 +13,5 @@ class Car(models.Model):
     phone = models.CharField( max_length= 30 )
     car_description = models.TextField()
     car_specs = models.TextField()
-
-
-
+    
+       
