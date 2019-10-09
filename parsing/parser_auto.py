@@ -1,16 +1,20 @@
 from datetime import datetime
 
-import requests, time, csv
+import requests, time, csv, os
 from bs4 import BeautifulSoup
 
 import parser_lib
 
+ALL_LINKS= [] #Для записи всех ссылок на объявления (чтобы не обнулялся список после прохода по второй и далее страницам)
 
-def auto_parce(url):
+def get_html_page(url, page = None):
     print('start parsing')
     auto_url = url
+    params = {
+            "p": page
+        }
     try:
-        result = requests.get(auto_url)
+        result = requests.get(auto_url, params=params)
         result.raise_for_status()
         return result.text
 
@@ -18,64 +22,88 @@ def auto_parce(url):
         print('Network error')
         return False
 
-def all_auto_items(link_for_parce):
-    html = auto_parce(link_for_parce)
+def get_all_links(link_for_parce, page = None):
+    html = get_html_page(link_for_parce, page)
     if html:
         soup = BeautifulSoup(html, 'html.parser')
         all_cars = soup.findAll('a', class_="item-description-title-link")
-        result_news = []
+        all_links = ALL_LINKS
         for car in all_cars:
-            title = car.find('span').text
             try:
                 url = car.attrs['href']
             except BaseException as e:
-                print(e)
+                print('Something wrong in get_all_links', e)
 
-            result_news.append({
-                'title': title,
+            all_links.append({
                 'url': url,
             })
-        return result_news
+        return all_links
     return False
 
-def auto_item():
-    auto_list = all_auto_items('https://www.avito.ru/moskva_i_mo/avtomobili/avtomat/benzin/levyy_rul/ne_bolee_dvuh/ne_bityy')
+def get_auto_item():
+    auto_list = get_all_links('https://www.avito.ru/moskva_i_mo/avtomobili/avtomat/benzin/levyy_rul/ne_bolee_dvuh/ne_bityy')
+    p = 2
+    while len(auto_list) < 60:
+        auto_list = get_all_links('https://www.avito.ru/moskva_i_mo/avtomobili/avtomat/benzin/levyy_rul/ne_bolee_dvuh/ne_bityy', p)
+        time.sleep(10)
+        p += 1
     time.sleep(10)
     car_full_info = []
     for item in auto_list:
         link = 'https://www.avito.ru'+ item['url']
-        item_info = auto_parce(link)
+        item_info = get_html_page(link)
 
-        if item_info:
-            soup = BeautifulSoup(item_info, 'html.parser')
+        soup = BeautifulSoup(item_info, 'html.parser')
 
-            avito_item_number = parser_lib.get_item_number(soup)
-            title = parser_lib.get_title(soup)
-            published = datetime.now().strftime('%d.%m.%Y %H:%M')
-            price = parser_lib.get_price(soup)
-            seller = parser_lib.get_seller(soup)
-            phone = parser_lib.get_phone(soup)
-            description = parser_lib.get_description(soup)
-            all_specs = parser_lib.get_all_specs(soup)
+        avito_item_number = parser_lib.get_item_number(soup)
+        title = parser_lib.get_title(soup)
+        published = datetime.now().strftime('%d.%m.%Y %H:%M')
+        price = parser_lib.get_price(soup)
+        seller = parser_lib.get_seller(soup)
+        phone = parser_lib.get_phone(soup)
+        description = parser_lib.get_description(soup)
+        all_specs = parser_lib.get_all_specs(soup)
 
-            car_full_info.append({
-                'avito_item_number': avito_item_number,
-                'title': title,
-                'published': published,
-                'price': price,
-                'seller': seller,
-                'phone': phone,
-                'description': description,
-                'car_specs': all_specs
-                })
-            print(car_full_info)
-            print('ok!')
-            time.sleep(180)     
+        images = parser_lib.get_image(soup)
+
+        car_full_info.append({
+            'avito_item_number': avito_item_number,
+            'title': title,
+            'published': published,
+            'price': price,
+            'seller': seller,
+            'phone': phone,
+            'description': description,
+            'car_specs': all_specs,
+            'images': images
+            })
+        print(car_full_info)
+        print('ok!')
+        #time.sleep(180)
+
+        image_name_index = 0
+        image_lib = car_full_info[0]['images']
+        image_name = car_full_info[0]['avito_item_number']
+        
+        path = car_full_info[0]['avito_item_number']
+        try:
+            os.mkdir(path)
+        except OSError:
+            print ("Создать директорию %s не удалось" % path)
+        else:
+            print ("Успешно создана директория %s " % path)
+
+        for link in image_lib:
+            image_name = image_name + str(image_name_index)
+            parser_lib.load_image(link, image_name, path)
+            image_name_index += 1
+
+        time.sleep(180)
     return car_full_info
 
 
 if __name__ == '__main__':
-    result = auto_item()
+    result = get_auto_item()
     print(result)
     with open('export_cars.csv', 'w', encoding='utf-8', newline='') as f:
         fields = ['title', 'published', 'price', 'seller', 'phone', 'description', 'car_specs']
