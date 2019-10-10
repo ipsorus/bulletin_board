@@ -1,12 +1,11 @@
 from datetime import datetime
 
-import requests, time, csv
+import requests, time, csv, os
 from bs4 import BeautifulSoup
 
 def get_item_number(get_item_number_text):
     try:
         item = get_item_number_text.find('div', class_="item-view-search-info-redesign").find('span').text
-        print(item)
         item = item.split(' ')[1]
     except (ValueError, AttributeError):
         item = None
@@ -35,7 +34,8 @@ def get_seller(seller_text):
 
 def get_phone(phone_text):
     try:
-        phone = phone_text.find('div', class_="sticky-header-prop sticky-header-contacts").text
+        phone = '+74991234567'
+        #phone = phone_text.find('div', class_="sticky-header-prop sticky-header-contacts").text
     except (ValueError, AttributeError):
         phone = None
     return phone
@@ -57,3 +57,31 @@ def get_all_specs(all_specs_text):
     except (ValueError, AttributeError):
         all_specs = None
     return car_specs
+
+def get_image(image_html):
+    images = []
+    try:
+        images_links = image_html.findAll('div', class_="gallery-img-frame js-gallery-img-frame")
+        for link in images_links:
+            try:
+                url = link.attrs['data-url'].lstrip('//')
+            except BaseException as e:
+                print('Something wrong in images', e)
+                url = None
+
+            images.append(url)
+
+            if len(images) < 3:
+                continue
+            else:
+                break
+
+    except (ValueError, AttributeError):
+        images = []
+    return images
+
+def load_image(image_link, num, item_folder):  
+    url = 'http://' + image_link
+    with open(item_folder + '/' + str(num) +'.jpg','wb') as target:
+        a = requests.post(url)
+        target.write(a.content)
