@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 import parser_lib
 
-ALL_LINKS= [] #Для записи всех ссылок на объявления (чтобы не обнулялся список после прохода по второй и далее страницам)
+ALL_LINKS = [] #Для записи всех ссылок на объявления (чтобы не обнулялся список после прохода по второй и далее страницам)
 
 def get_html_page(url, page = None):
     print('start parsing')
@@ -48,7 +48,7 @@ def get_auto_item():
         time.sleep(10)
         p += 1
     time.sleep(10)
-    car_full_info = []
+    #car_full_info = []
     for item in auto_list:
         link = 'https://www.avito.ru'+ item['url']
         item_info = get_html_page(link)
@@ -66,7 +66,7 @@ def get_auto_item():
 
         images = parser_lib.get_image(soup)
 
-        car_full_info.append({
+        '''car_full_info.append({
             'avito_item_number': avito_item_number,
             'title': title,
             'published': published,
@@ -76,16 +76,27 @@ def get_auto_item():
             'description': description,
             'car_specs': all_specs,
             'images': images
-            })
+            })'''
+        car_full_info = {
+            'avito_item_number': avito_item_number,
+            'title': title,
+            'published': published,
+            'price': price,
+            'seller': seller,
+            'phone': phone,
+            'description': description,
+            'car_specs': all_specs,
+            'images': images
+            }
         print(car_full_info)
         print('ok!')
         #time.sleep(180)
 
         image_name_index = 0
-        image_lib = car_full_info[0]['images']
-        image_name = car_full_info[0]['avito_item_number']
+        image_lib = car_full_info['images']
+        image_name = car_full_info['avito_item_number']
         
-        path = car_full_info[0]['avito_item_number']
+        path = car_full_info['avito_item_number']
         try:
             os.mkdir(path)
         except OSError:
@@ -98,16 +109,16 @@ def get_auto_item():
             parser_lib.load_image(link, image_name, path)
             image_name_index += 1
 
-        time.sleep(180)
+        time.sleep(80)
     return car_full_info
 
 
 if __name__ == '__main__':
     result = get_auto_item()
     print(result)
-    with open('export_cars.csv', 'w', encoding='utf-8', newline='') as f:
+    '''with open('export_cars.csv', 'w', encoding='utf-8', newline='') as f:
         fields = ['title', 'published', 'price', 'seller', 'phone', 'description', 'car_specs']
         writer = csv.DictWriter(f, fields, delimiter=';')
         writer.writeheader()
         for auto in result:
-            writer.writerow(auto)
+            writer.writerow(auto)'''

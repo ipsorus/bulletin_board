@@ -2,4 +2,6 @@
 *.pyc
 env
 *.csv
-.DS_Store
+**/.DS_Store
+.vscode/
+__pycache__/
