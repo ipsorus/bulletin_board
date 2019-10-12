@@ -35,7 +35,6 @@ def get_seller(seller_text):
 def get_phone(phone_text):
     try:
         phone = '+74991234567'
-        #phone = phone_text.find('div', class_="sticky-header-prop sticky-header-contacts").text
     except (ValueError, AttributeError):
         phone = None
     return phone
