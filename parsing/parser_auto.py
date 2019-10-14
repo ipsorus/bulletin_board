@@ -83,7 +83,7 @@ def get_auto_item():
         image_lib = car_full_info['images']
         image_name = car_full_info['avito_item_number']
         
-        path = 'images/' + car_full_info['avito_item_number']
+        path = car_full_info['avito_item_number']
         try:
             os.mkdir(path)
         except OSError:
