@@ -8,7 +8,7 @@ from .models import Car
 
 class CarModelTests(TestCase):
 
-    def test_wrong_date_type(self):
+    def test_wrong_class(self):
        
         test_car = mommy.make(Car)
         self.assertTrue(isinstance(test_car, Car))
