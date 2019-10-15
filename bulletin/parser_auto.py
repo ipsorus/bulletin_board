@@ -8,7 +8,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'bulletin.settings'
 django.setup()
 
 import parser_lib
-from models import Car
+from db_create import db_create
+from bulletin_board.models import Car
 
 ALL_LINKS = [] #Для записи всех ссылок на объявления (чтобы не обнулялся список после прохода по второй и далее страницам)
 
@@ -67,11 +68,10 @@ def get_auto_item():
         phone = parser_lib.get_phone(soup)
         description = parser_lib.get_description(soup)
         all_specs = parser_lib.get_all_specs(soup)
-
-        sale_announcement = Car(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, car_specs=all_specs, avito_item=avito_item_number)
-        sale_announcement.save()
-        print('Запись в бд завершена!')
-
+        
+        #Ниже функция записи в БД
+        db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, car_specs=all_specs, avito_item=avito_item_number)
+        
         images = parser_lib.get_image(soup)
 
         car_full_info = {
