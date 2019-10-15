@@ -1,6 +1,4 @@
-from datetime import datetime
-
-import requests, time, csv, os
+import requests, time, os
 from bs4 import BeautifulSoup
 
 def get_item_number(get_item_number_text):
@@ -21,9 +19,11 @@ def get_title(title_text):
 def get_price(price_text):
     try:
         price = price_text.find('span', class_="js-item-price").text
+        total_price = price.split()
+        total_price = ''.join(total_price)
     except (ValueError, AttributeError):
         price = None
-    return price
+    return int(total_price)
 
 def get_seller(seller_text):
     try:
@@ -52,7 +52,7 @@ def get_all_specs(all_specs_text):
         all_specs = all_specs_text.find('ul', class_='item-params-list').findAll('li')
         for spec in all_specs:
             car_spec = spec.text.split(':')
-            car_specs[car_spec[0]] = car_spec[1]
+            car_specs[car_spec[0].strip()] = car_spec[1].strip()
     except (ValueError, AttributeError):
         all_specs = None
     return car_specs
