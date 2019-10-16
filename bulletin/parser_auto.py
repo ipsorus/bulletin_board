@@ -39,31 +39,6 @@ def get_auto_item():
         all_specs = parser_lib.get_all_specs(soup)
 
 
-# Кирилл, я тебе данные для вноса в таблицу подготовил) перевел все в int, float, удалил все лишнее
-        car_brand = all_specs['Марка']
-        car_model = all_specs['Модель']
-        car_generation = all_specs['Поколение']
-        modif = all_specs['Модификация']
-        year_of_manufacture = int(all_specs['Год выпуска'])
-        car_mileage = int(all_specs['Пробег'].rstrip('\xa0км'))
-        condition = all_specs['Состояние']
-        owners = int(all_specs['Владельцев по ПТС'])
-        vin_number = all_specs['VIN или номер кузова']
-        type_chassis = all_specs['Тип кузова']
-        doors = int(all_specs['Количество дверей'])
-        engine_type = all_specs['Тип двигателя']
-        transmission = all_specs['Коробка передач']
-        drive = all_specs['Привод']
-        steering_side = all_specs['Руль']
-        color = all_specs['Цвет']
-        equipment = all_specs['Комплектация']
-        view_place = all_specs['Место осмотра']
-        engine_volume = float(all_specs['Объём двигателя'].rstrip('\xa0л'))
-
-
-
-        #Ниже функция записи в БД
-        db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, car_specs=all_specs, avito_item=avito_item_number)
         
         images = parser_lib.get_image(soup)
         #Загрузка картинок на диск
