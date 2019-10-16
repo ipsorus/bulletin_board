@@ -62,7 +62,6 @@ def get_auto_item():
 
 
 
-        
         #Ниже функция записи в БД
         db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, car_specs=all_specs, avito_item=avito_item_number)
         
@@ -86,23 +85,6 @@ def get_auto_item():
         print(car_full_info)
         print('ok!')
         #
-
-        '''image_name_index = 0
-        image_lib = car_full_info['images']
-        image_name = car_full_info['avito_item_number']
-        
-        path = car_full_info['avito_item_number']
-        try:
-            os.mkdir(path)
-        except OSError:
-            print ("Создать директорию %s не удалось" % path)
-        else:
-            print ("Успешно создана директория %s " % path)
-
-        for link in image_lib:
-            image_name = image_name + str(image_name_index)
-            parser_lib.load_image(link, image_name, path)
-            image_name_index += 1'''
 
         time.sleep(60)
     return car_full_info
