@@ -40,31 +40,32 @@ def get_auto_item():
 
 
 # Кирилл, я тебе данные для вноса в таблицу подготовил) перевел все в int, float, удалил все лишнее
-        car_brand = all_specs['Марка']
-        car_model = all_specs['Модель']
-        car_generation = all_specs['Поколение']
-        modif = all_specs['Модификация']
+        car_brand = all_specs.get('Марка', '')
+        car_model = all_specs.get('Модель', '')
+        car_generation = all_specs.get('Поколение', '')
+        modif = all_specs.get('Модификация', '')
         year_of_manufacture = int(all_specs['Год выпуска'])
         car_mileage = int(all_specs['Пробег'].rstrip('\xa0км'))
-        condition = all_specs['Состояние']
+        condition = all_specs.get('Состояние', '')
         owners = int(all_specs['Владельцев по ПТС'])
-        vin_number = all_specs['VIN или номер кузова']
-        type_chassis = all_specs['Тип кузова']
+        vin_number = all_specs.get('VIN или номер кузова', '')
+        type_chassis = all_specs.get('Тип кузова', '')
         doors = int(all_specs['Количество дверей'])
-        engine_type = all_specs['Тип двигателя']
-        transmission = all_specs['Коробка передач']
-        drive = all_specs['Привод']
-        steering_side = all_specs['Руль']
-        color = all_specs['Цвет']
-        equipment = all_specs['Комплектация']
-        view_place = all_specs['Место осмотра']
+        engine_type = all_specs.get('Тип двигателя', '')
+        transmission = all_specs.get('Коробка передач', '')
+        drive = all_specs.get('Привод', '')
+        steering_side = all_specs.get('Руль', '')
+        color = all_specs.get('Цвет', '')
+        equipment = all_specs.get('Комплектация', '')
+        view_place = all_specs.get('Место осмотра', '')
         engine_volume = float(all_specs['Объём двигателя'].rstrip('\xa0л'))
 
 
-
-        
         #Ниже функция записи в БД
-        db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, car_specs=all_specs, avito_item=avito_item_number)
+        db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, avito_item=avito_item_number, car_brand=car_brand,
+        car_model=car_model, car_generation=car_generation, modification=modif, year_of_manufacture=year_of_manufacture, car_mileage=car_mileage, condition=condition, owners=owners,
+        vin_number=vin_number, type_chassis=type_chassis, doors=doors, engine_type=engine_type, transmission=transmission, drive=drive, steering_side=steering_side, color=color,
+        equipment=equipment, view_place=view_place, engine_volume=engine_volume )
         
         images = parser_lib.get_image(soup)
         #Загрузка картинок на диск
@@ -86,23 +87,6 @@ def get_auto_item():
         print(car_full_info)
         print('ok!')
         #
-
-        '''image_name_index = 0
-        image_lib = car_full_info['images']
-        image_name = car_full_info['avito_item_number']
-        
-        path = car_full_info['avito_item_number']
-        try:
-            os.mkdir(path)
-        except OSError:
-            print ("Создать директорию %s не удалось" % path)
-        else:
-            print ("Успешно создана директория %s " % path)
-
-        for link in image_lib:
-            image_name = image_name + str(image_name_index)
-            parser_lib.load_image(link, image_name, path)
-            image_name_index += 1'''
 
         time.sleep(60)
     return car_full_info
