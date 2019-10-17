@@ -2,6 +2,7 @@ from datetime import datetime
 
 import django, time, os, requests, urllib
 from django.db import models
+from django.core.files import File
 from bs4 import BeautifulSoup
 
 import parser_lib, get_links, get_html, get_image

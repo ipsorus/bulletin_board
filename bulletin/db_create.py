@@ -1,5 +1,6 @@
 import requests
 import urllib
+from django.core.files import File
 
 from bulletin_board.models import Car, Photos
 
@@ -19,9 +20,9 @@ steering_side='', color='', equipment='', view_place='', engine_volume='', image
     for image in images:
         url = 'http://' + image
         print(url)
-        photo = urllib.request.urlopen(url).read()
-        photo = Photos(image=photo, car=sale_announcement)
-        photo.save()
+        photo = urllib.request.urlretrieve(url)
+        a = Photos(image=File(open(photo[0])), car=sale_announcement)
+        a.save()
 
 
 
