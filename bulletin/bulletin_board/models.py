@@ -33,5 +33,9 @@ class Car(models.Model):
     view_place = models.CharField( max_length=100, blank=True)
     engine_volume = models.FloatField( blank=True, null= True)
 
+class Photos(models.Model):
+
+    image = models.ImageField( upload_to='photos/%Y/%m/%d')
+    car = models.ForeignKey( Car, on_delete = models.CASCADE)
     
        

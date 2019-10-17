@@ -1,6 +1,6 @@
 from datetime import datetime
 
-import django, time, os
+import django, time, os, requests, urllib
 from django.db import models
 from bs4 import BeautifulSoup
 
@@ -70,17 +70,20 @@ def get_auto_item():
             engine_volume = float(engine_volume)
 
 
+        
+        images = parser_lib.get_image(soup)
+
         #Ниже функция записи в БД, TODO
         db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, avito_item=avito_item_number, car_brand=car_brand,
         car_model=car_model, car_generation=car_generation, modification=modif, year_of_manufacture=year_of_manufacture, car_mileage=car_mileage, condition=condition, owners=owners,
         vin_number=vin_number, type_chassis=type_chassis, doors=doors, engine_type=engine_type, transmission=transmission, drive=drive, steering_side=steering_side, color=color,
-        equipment=equipment, view_place=view_place, engine_volume=engine_volume )
+        equipment=equipment, view_place=view_place, engine_volume=engine_volume, images=images )
 
         
-        images = parser_lib.get_image(soup)
+        '''
         #Загрузка картинок на диск
         get_image.download_image(images, avito_item_number)
-
+        '''
 
         #После тестирования этот блок удалить
         car_full_info = {
