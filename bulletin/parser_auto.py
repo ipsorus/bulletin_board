@@ -1,11 +1,11 @@
 from datetime import datetime
 
-import django, time, os, requests, urllib
+import django, time, os, requests
 from django.db import models
-from django.core.files import File
+from django.utils import timezone
 from bs4 import BeautifulSoup
 
-import parser_lib, get_links, get_html, get_image
+import parser_lib, get_links, get_html
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'bulletin.settings'
 django.setup()
@@ -80,32 +80,14 @@ def get_auto_item():
         vin_number=vin_number, type_chassis=type_chassis, doors=doors, engine_type=engine_type, transmission=transmission, drive=drive, steering_side=steering_side, color=color,
         equipment=equipment, view_place=view_place, engine_volume=engine_volume, images=images )
 
-        
-        '''
-        #Загрузка картинок на диск
-        get_image.download_image(images, avito_item_number)
-        '''
 
-        #После тестирования этот блок удалить
-        car_full_info = {
-            'avito_item_number': avito_item_number,
-            'title': title,
-            'published': published,
-            'price': price,
-            'seller': seller,
-            'phone': phone,
-            'description': description,
-            'car_specs': all_specs,
-            'images': images
-            }
-        print(car_full_info)
-        print('ok!')
-        #
+        print('Парсинг закончен успешно!')
+        
 
         time.sleep(60)
-    return car_full_info
+    #return car_full_info
 
 
 if __name__ == '__main__':
-    result = get_auto_item()
-    print(result)
+    get_auto_item()
+    

@@ -63,7 +63,7 @@ def get_image(image_html):
         images_links = image_html.findAll('div', class_="gallery-img-frame js-gallery-img-frame")
         for link in images_links:
             try:
-                url = link.attrs['data-url'].lstrip('//')
+                url = 'http:' + link.attrs['data-url']
             except BaseException as e:
                 print('Something wrong in images', e)
                 url = None
@@ -78,9 +78,3 @@ def get_image(image_html):
     except (ValueError, AttributeError):
         images = []
     return images
-
-def load_image(image_link, num, item_folder):  
-    url = 'http://' + image_link
-    with open(item_folder + '/' + str(num) +'.jpg','wb') as target:
-        a = requests.post(url)
-        target.write(a.content)

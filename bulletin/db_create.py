@@ -1,5 +1,5 @@
 import requests
-import urllib
+
 from django.core.files import File
 
 from bulletin_board.models import Car, Photos
@@ -18,12 +18,9 @@ steering_side='', color='', equipment='', view_place='', engine_volume='', image
     sale_announcement.save()
 
     for image in images:
-        url = 'http://' + image
-        print(url)
-        photo = urllib.request.urlretrieve(url)
-        a = Photos(image=File(open(photo[0])), car=sale_announcement)
-        a.save()
-
-
+        url = image
+        photo = Photos(image_url = url, car = sale_announcement)
+        photo.save()
+        photo.get_remote_url()
 
     return print('Объявление занесено в базу данных')
