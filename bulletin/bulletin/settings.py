@@ -31,6 +31,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< HEAD
+=======
+    'user.apps.UserConfig',
+    'bulletin_board.apps.BulletinBoardConfig',
+>>>>>>> Формы регистрации, логина и логаута
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,7 +61,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+<<<<<<< HEAD
             os.path.join(BASE_DIR, 'templates')
+=======
+            os.path.join(BASE_DIR, 'templates'),
+>>>>>>> Формы регистрации, логина и логаута
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -127,3 +136,5 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = 'user:register'
