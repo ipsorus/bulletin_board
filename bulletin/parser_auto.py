@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import django, time, os, requests
 from django.db import models
 from django.utils import timezone
@@ -32,7 +30,6 @@ def get_auto_item():
 
         avito_item_number = parser_lib.get_item_number(soup)
         title = parser_lib.get_title(soup)
-        published = datetime.now()
         price = parser_lib.get_price(soup)
         seller = parser_lib.get_seller(soup)
         phone = parser_lib.get_phone(soup)
@@ -75,7 +72,7 @@ def get_auto_item():
         images = parser_lib.get_image(soup)
 
         #Ниже функция записи в БД, TODO
-        db_create(car_title=title, pub_date=published, price=price, seller=seller, phone=phone, car_description=description, avito_item=avito_item_number, car_brand=car_brand,
+        db_create(car_title=title, price=price, seller=seller, phone=phone, car_description=description, avito_item=avito_item_number, car_brand=car_brand,
         car_model=car_model, car_generation=car_generation, modification=modif, year_of_manufacture=year_of_manufacture, car_mileage=car_mileage, condition=condition, owners=owners,
         vin_number=vin_number, type_chassis=type_chassis, doors=doors, engine_type=engine_type, transmission=transmission, drive=drive, steering_side=steering_side, color=color,
         equipment=equipment, view_place=view_place, engine_volume=engine_volume, images=images )
