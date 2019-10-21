@@ -5,6 +5,22 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="mb-5">Posts</h1>
-    Доска объявлений
+<h1 class="mb-5">Posts:</h1>
+    {% for post in posts %}
+        <div class="card mb-4">
+            <img src="" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.car_title }}</h5>
+              <p class="card-text"></p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Стоимость: {{ post.price }} руб.</li>
+              <li class="list-group-item">Пробег: {{ post.car_mileage }} тыс.км.</li>
+              <li class="list-group-item">Дата публикации: {{ post.pub_date }}</li>
+            </ul>
+            <div class="card-body">
+              <a href="{{ post.get_absolute_url }}" class="card-link">Подробнее</a>
+            </div>
+          </div>
+    {% endfor %}
 {% endblock %}
