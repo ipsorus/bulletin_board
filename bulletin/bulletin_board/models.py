@@ -1,15 +1,17 @@
-import datetime, requests
+import requests
+from datetime import datetime
 
 from django.db import models
 from django.core.files import File
 from tempfile import NamedTemporaryFile
 from django.utils import timezone
+from django.utils.timezone import now
 
 
 class Car(models.Model):
    
     car_title = models.CharField( max_length=100, blank=True)
-    pub_date = models.DateTimeField( blank=True, null=True)
+    pub_date = models.DateTimeField( default=now, blank=True, null=True)
     price = models.FloatField( blank=True, null= True)
     seller = models.CharField( max_length=100, blank=True )
     phone = models.CharField( max_length=30, blank=True )
