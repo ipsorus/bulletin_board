@@ -80,9 +80,7 @@ def get_auto_item():
 
         print('Парсинг закончен успешно!')
         
-
-        time.sleep(60)
-    #return car_full_info
+        time.sleep(30)
 
 
 if __name__ == '__main__':

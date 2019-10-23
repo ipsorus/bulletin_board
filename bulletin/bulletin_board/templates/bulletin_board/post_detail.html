@@ -1,15 +1,15 @@
 {% extends 'bulletin_board/base_main.html' %}
 
 {% block title %}
-    {{ post.car_title }} - {{block.super}}
+    {{ car.car_title }} - {{block.super}}
 {% endblock %}
 
 {% block content %}
     <div class="h1 md-5">
-        {{ post.car_title }} 
+        {{ car.car_title }} 
     </div>
     <p>
-        {{ post.car_description }}
+        {{ car.car_description }}
     </p>
     
 {% endblock %}

@@ -1,13 +1,17 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 
-from .models import Car
+from django.views.generic import View
+from .utils import ObjectDetailMixin
+
+from .models import *
 # Create your views here.
 
 def posts_list(request):
-    posts = Car.objects.all()
-    return render(request,'bulletin_board/index.html', context={'posts': posts})
+    cars = Car.objects.all()
+    return render(request,'bulletin_board/index.html', context={'cars': cars})
 
 
-def post_detail(request, id):
-    post = Car.objects.get(id__iexact=id)
-    return render(request, 'bulletin_board/post_detail.html', context={'post':post})
+class PostDetail(ObjectDetailMixin, View):
+    model = Car
+    template = 'bulletin_board/post_detail.html'
