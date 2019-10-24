@@ -1,0 +1,21 @@
+<div class="card mb-4">
+  <div>
+    <p>
+    {% for image in car.resultimage.all %} 
+        <img src="{{ image.image_data_link.url }}" class="card-img-top" alt="..." style='width:200px'> 
+    {% endfor %}
+    </p>
+  </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ car.car_title }}</h5>
+      <p class="card-text"></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Стоимость: {{ car.price }} руб.</li>
+      <li class="list-group-item">Пробег: {{ car.car_mileage }} тыс.км.</li>
+      <li class="list-group-item">Дата публикации: {{ car.pub_date }}</li>
+    </ul>
+    <div class="card-body">
+      <a href="{{ car.get_absolute_url }}" class="card-link">Подробнее</a>
+    </div>
+</div>

@@ -40,22 +40,25 @@ class Car(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail_url', kwargs={'id': self.id})
 
+    def get_update_url(self):
+        return reverse('post_update_url', kwargs={'id': self.id})
+
 
     def __str__(self):
         return self.car_title
 
 class Photos(models.Model):
 
-    image = models.ImageField( upload_to='photos/%Y/%m/%d')
+    image_data_link = models.ImageField(upload_to='photos/%Y/%m/%d')
     image_url = models.URLField(blank=True)
-    car = models.ForeignKey( Car, on_delete = models.CASCADE)
+    car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='resultimage')
 
     def get_remote_url(self):
-        if self.image_url and not self.image:
+        if self.image_url and not self.image_data_link:
             image_temp = NamedTemporaryFile(delete=True)
             image_temp.write(requests.get(self.image_url).content)
             image_temp.flush()
-            self.image.save(f'photo_{self.pk}.jpg', File(image_temp))
+            self.image_data_link.save(f'photo_{self.pk}.jpg', File(image_temp))
         self.save()
 
 
