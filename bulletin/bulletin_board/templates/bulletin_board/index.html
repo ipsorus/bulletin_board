@@ -1,6 +1,4 @@
 {% extends 'bulletin_board/base_main.html' %}
-{% load static %}
-
 
 
 {% block title %}
@@ -10,6 +8,6 @@
 {% block content %}
 <h1 class="mb-5">Posts:</h1>
     {% for car in cars %}
-        {% include 'bulletin_board/includes/post_card_template.html' %}
+        {% include 'bulletin_board/includes/car_card_template.html' %}
     {% endfor %}
 {% endblock %}

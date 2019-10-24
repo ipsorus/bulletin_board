@@ -12,7 +12,7 @@ django.setup()
 from db_create import db_create
 from bulletin_board.models import Car
 
-MAIN_LINK = 'https://www.avito.ru/moskva_i_mo/avtomobili/avtomat/benzin/levyy_rul/ne_bolee_dvuh/ne_bityy'
+MAIN_LINK = 'https://www.avito.ru/moskva_i_mo/avtomobili/ne_bityy'
 
 def get_auto_item():
     auto_list = get_links.get_all_links(MAIN_LINK)
@@ -44,9 +44,9 @@ def get_auto_item():
         year_of_manufacture = all_specs.get('Год выпуска')
         if year_of_manufacture:
             year_of_manufacture = int(year_of_manufacture)
-        car_mileage = all_specs.get('Пробег').rstrip('\xa0км')
+        car_mileage = all_specs.get('Пробег')
         if car_mileage:
-            car_mileage = int(car_mileage)
+            car_mileage = int(car_mileage.rstrip('\xa0км'))
         condition = all_specs.get('Состояние', '')
         owners = all_specs.get('Владельцев по ПТС')
         if owners:
@@ -63,9 +63,9 @@ def get_auto_item():
         color = all_specs.get('Цвет', '')
         equipment = all_specs.get('Комплектация', '')
         view_place = all_specs.get('Место осмотра', '')
-        engine_volume = all_specs.get('Объём двигателя').rstrip('\xa0л')
+        engine_volume = all_specs.get('Объём двигателя')
         if engine_volume:
-            engine_volume = float(engine_volume)
+            engine_volume = float(engine_volume.rstrip('\xa0л'))
 
 
         
