@@ -12,7 +12,7 @@ django.setup()
 from db_create import db_create
 from bulletin_board.models import Car
 
-MAIN_LINK = 'https://www.avito.ru/moskva_i_mo/avtomobili/ne_bityy'
+MAIN_LINK = 'https://www.avito.ru/moskva_i_mo/avtomobili/ne_bolee_dvuh/ne_bityy'
 
 def get_auto_item():
     auto_list = get_links.get_all_links(MAIN_LINK)
