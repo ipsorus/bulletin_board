@@ -10,7 +10,7 @@ class ObjectDetailMixin:
 
     def get(self,request,id):
         obj = get_object_or_404(self.model, id__iexact=id)
-        return render(request, self.template, context={self.model.__name__.lower(): obj})
+        return render(request, self.template, context={self.model.__name__.lower(): obj, 'admin_object': obj, 'detail': True})
 
 class ObjectCreateMixin:
     model_form = None
@@ -45,4 +45,18 @@ class ObjectUpdateMixin:
             new_obj = bound_form.save()
             return redirect(new_obj)
         return render(redirect, self.template, context={'form': bound_form, self.model.__name.lower(): obj})
+
+class ObjectDeleteMixin:
+    model = None
+    template = None
+    redirect_url = None
+
+    def get(self, request, id):
+        obj = self.model.objects.get(id__iexact=id)
+        return render(request, self.template, context={self.model.__name__.lower():obj})
+
+    def post(self, request, id):
+        obj = self.model.objects.get(id__iexact=id)
+        obj.delete()
+        return redirect(reverse(self.redirect_url))
 

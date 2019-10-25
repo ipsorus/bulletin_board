@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.shortcuts import redirect
 
-def hello(request):
-    return HttpResponse('Hello world')
+def redirect_main_page(request):
+    return redirect('cars_list_url',permanent=True)

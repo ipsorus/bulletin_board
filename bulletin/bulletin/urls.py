@@ -20,8 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from .views import redirect_main_page
 
 urlpatterns = [
+    path('', redirect_main_page),
     path('admin/', admin.site.urls),
     path('bulletin_board/', include('bulletin_board.urls'))
 

@@ -1,7 +1,7 @@
 <div class="card mb-4">
   <div>
     <p>
-    {% for image in car.resultimage.all %} 
+    {% for image in car.all_images.all %} 
         <img src="{{ image.image_data_link.url }}" class="card-img-top" alt="..." style='width:200px'> 
     {% endfor %}
     </p>

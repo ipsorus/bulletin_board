@@ -1,0 +1,15 @@
+{% extends 'bulletin_board/base_main.html' %}
+
+{% block title %}
+    Delete car "{{ car.car_title }}" - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ car.car_delete_url }}" method="post">
+        {% csrf_token %}
+        <h2>Вы уверены что хотите удалить объявление <b>"{{ car.car_title }}"</b>?</h2>
+        <a href="{{ car.get_absolute_url }}">Отмена</a>
+        <button class="submit" name="button" class="btn btn-danger">Удалить</button>
+    </form>
+
+{% endblock %}

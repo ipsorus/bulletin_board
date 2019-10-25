@@ -38,10 +38,13 @@ class Car(models.Model):
     engine_volume = models.FloatField(blank=True, null= True)
 
     def get_absolute_url(self):
-        return reverse('post_detail_url', kwargs={'id': self.id})
+        return reverse('car_detail_url', kwargs={'id':self.id})
 
     def get_update_url(self):
-        return reverse('post_update_url', kwargs={'id': self.id})
+        return reverse('car_update_url', kwargs={'id':self.id})
+
+    def get_delete_url(self):
+        return reverse('car_delete_url', kwargs={'id':self.id})
 
 
     def __str__(self):
@@ -51,7 +54,7 @@ class Photos(models.Model):
 
     image_data_link = models.ImageField(upload_to='photos/%Y/%m/%d')
     image_url = models.URLField(blank=True)
-    car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='resultimage')
+    car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='all_images')
 
     def get_remote_url(self):
         if self.image_url and not self.image_data_link:

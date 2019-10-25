@@ -2,7 +2,7 @@ from django import forms
 from .models import *
 
 
-class PostForm(forms.ModelForm):
+class CarForm(forms.ModelForm):
     class Meta:
         model = Car
         fields = ['car_title', 'price', 'seller', 'phone', 'car_description', 'avito_item', 'car_brand',

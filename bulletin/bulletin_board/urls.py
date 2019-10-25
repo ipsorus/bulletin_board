@@ -3,9 +3,10 @@ from .views import *
 
 
 urlpatterns = [
-    path('', posts_list, name='posts_list_url'),
-    path('post/create/', PostCreate.as_view(), name="post_create_url"),
-    path('post/<str:id>/', PostDetail.as_view(), name="post_detail_url"),
-    path('post/<str:id>/update/', PostUpdate.as_view(), name="post_update_url")
+    path('', cars_list, name='cars_list_url'),
+    path('car/create/', CarCreate.as_view(), name="car_create_url"),
+    path('car/<str:id>/', CarDetail.as_view(), name="car_detail_url"),
+    path('car/<str:id>/update/', CarUpdate.as_view(), name="car_update_url"),
+    path('car/<str:id>/delete/', CarDelete.as_view(), name="car_delete_url")
 
 ]
