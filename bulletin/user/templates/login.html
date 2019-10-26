@@ -13,21 +13,10 @@
   <body>
     <div class="container">
       
-      <div class="row justify-content-center align-items-center">
-      <div class="pr-3"><h2>Вход в систему</h2></div>
-      </div>  
-      <div class="row justify-content-center align-items-center">
+      
         <form method="POST">
           {% csrf_token %}
-          <div class="form-group">
-            <p></p><label>Введите имя пользователя:</label>
-            <p>{{form.username}}
-            
-            <p></p><label>Введите пароль:</label>
-            <p>{{form.password}}
-            <small class="form-text text-muted">{{form.password.help_text}}</small>  
-           
-          <div class='pl-4'>
+          {{form.as_p}}
             <button
                   type="submit"
                   class="btn btn-primary">

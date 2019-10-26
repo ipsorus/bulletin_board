@@ -19,7 +19,23 @@
       <div class="row justify-content-center align-items-center">
         <form method="POST">
             {% csrf_token %}
-            {{form.as_p}}
+          <div class="form-group">
+          <p></p><label>Введите email:</label>
+            <p>{{form.email}}
+            <small class="form-text text-muted">{{form.email.help_text}}</small>
+
+            <p></p><label>Придумайте имя пользователя:</label>
+            <p>{{form.username}}
+            <small class="form-text text-muted">Обязательное поле.</small>
+
+            <p></p><label>Придумайте пароль:</label>
+            <p>{{form.password1}}
+            <small class="form-text text-muted">{{form.password1.help_text}}</small>
+
+            <p></p><label>Повторите пароль:</label>
+            <p>{{form.password2}}
+            <small class="form-text text-muted">{{form.password2.help_text}}</small>
+            
 
 
           </div>
