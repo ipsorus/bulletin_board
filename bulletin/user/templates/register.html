@@ -1,9 +1,7 @@
-
-
 {% extends 'bulletin_board/base_main.html' %}
 
 {% block title %}
-    Create car - {{ block.super }}
+    Регистрация
 {% endblock %}
 
 {% block content %}
@@ -20,7 +18,7 @@
       <p>{{ field  }}</p>
       <small class="form-text text-muted">{{field.help_text}}</small>
   </div>
-{% endfor %}
+  {% endfor %}
   <button
         type="submit"
         class="btn btn-primary">
