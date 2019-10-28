@@ -1,11 +1,15 @@
 <div class="card-body">
     <a href="{{ car.get_absolute_url }}" class="card-link">
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 640px; height: 250px;">
             <div class="row no-gutters">
               <div class="col-md-4">
+                <div class="mb-5">
                   {% for image in car.all_images.all %}
-                <img src="{{ image.image_data_link.url }}" class="card-img" alt="...">
-                {% endfor %}
+                    {% if forloop.first %}
+                        <img src="{{ image.image_data_link.url }}" class="d-block w-100" alt="{{ car.car_title }}">
+                    {% endif %}
+                  {% endfor %}
+              </div>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
