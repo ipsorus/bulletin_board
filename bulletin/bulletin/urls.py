@@ -28,7 +28,7 @@ urlpatterns = [
     path('', redirect_main_page),
     path('admin/', admin.site.urls),
     path('bulletin_board/', include('bulletin_board.urls')),
-    path('user/', include(user.urls, namespace='user')),
+    path('user/', include('user.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     
