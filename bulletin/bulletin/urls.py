@@ -22,9 +22,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from .views import redirect_main_page
 
+import user.urls
+
 urlpatterns = [
     path('', redirect_main_page),
     path('admin/', admin.site.urls),
-    path('bulletin_board/', include('bulletin_board.urls'))
+    path('bulletin_board/', include('bulletin_board.urls')),
+    path('user/', include('user.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    

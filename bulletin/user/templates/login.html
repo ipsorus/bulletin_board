@@ -1,0 +1,28 @@
+{% extends 'bulletin_board/base_main.html' %}
+
+{% block title %}
+    Вход в систему
+{% endblock %}
+
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-group">
+      {% if field.errors %}
+          <div class="alert alert-danger">
+              {{ field.errors }}
+          </div>
+      {% endif %}
+      {{ field.label }}
+      <p>{{ field  }}</p>
+      <small class="form-text text-muted">{{field.help_text}}</small>
+  </div>
+  {% endfor %}
+  <button
+        type="submit"
+        class="btn btn-primary">
+        Войти в систему
+  </button>
+</form>
+{% endblock %}

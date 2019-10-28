@@ -1,0 +1,13 @@
+{% extends 'bulletin_board/base_main.html' %}
+
+{% block title %}
+    Выход из системы
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% csrf_token %}
+  <div class="row justify-content-center align-items-center">
+  <h2>Выход из системы произведен</h2>
+{% endblock %}
+
