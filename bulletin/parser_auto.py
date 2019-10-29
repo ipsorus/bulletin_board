@@ -65,7 +65,10 @@ def get_auto_item():
         view_place = all_specs.get('Место осмотра', '')
         engine_volume = all_specs.get('Объём двигателя')
         if engine_volume:
-            engine_volume = float(engine_volume.rstrip('\xa0л'))
+            if '+' in engine_volume:
+                engine_volume = float(engine_volume.rstrip('+\xa0л'))
+            else:
+                engine_volume = float(engine_volume.rstrip('\xa0л'))
 
 
         
