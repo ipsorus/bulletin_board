@@ -1,26 +1,29 @@
 <div class="card-body">
-    <a href="{{ car.get_absolute_url }}" class="card-link">
-        <div class="card mb-3" style="max-width: 640px; height: 250px;">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <div class="mb-5">
+    
+        <div class="card mb-3 border-0" >
+            <div class="row">
+              <div class="col-md-4 align-self-center">
+                <a href="{{ car.get_absolute_url }}" class="card-link">
+                <div class="box">
                   {% for image in car.all_images.all %}
                     {% if forloop.first %}
-                        <img src="{{ image.image_data_link.url }}" class="d-block w-100" alt="{{ car.car_title }}">
+                        <img src="{{ image.image_data_link.url }}" alt="{{ car.car_title }}">
                     {% endif %}
                   {% endfor %}
-              </div>
+                </div>
+                </a>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">{{ car.car_title }}</h5>
-                  <p class="card-text"><small class="text-muted">Стоимость: {{ car.price }} руб.</small></p>
-                  <p class="card-text"><small class="text-muted">Пробег: {{ car.car_mileage }} км.</small></p>
-                  <p class="card-text"><small class="text-muted">Год выпуска: {{ car.year_of_manufacture }} г.</small></p>
-                  <p class="card-text"><small class="text-muted">Дата публикации: {{ car.pub_date }}</small></p>
+                  <a href="{{ car.get_absolute_url }}" class="card-link">
+                    <h5 class="card-title">{{ car.car_title }}</h5>
+                  </a>
+                  <p class="card-text"><small class="text-muted">{{ car.price }} Р</small></p>
+                  <p class="card-text"><small class="text-muted">{{ car.car_mileage }} км, {{ car.engine_type }}, {{ car.engine_volume }} л, {{ car.transmission }}</small></p>                  
+                  <p class="card-text"><small class="text-muted">{{ car.view_place }}</small></p>
+                  <p class="card-text"><small class="text-muted">{{ car.pub_date }}</small></p>
                 </div>
               </div>
             </div>
           </div>
-</a>
 </div>

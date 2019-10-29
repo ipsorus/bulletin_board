@@ -20,3 +20,37 @@
 a.edit, a.delete {
     display: none;
 }
+
+.img-block img{
+    object-fit: cover;
+    width: 208px;
+    height: 156px;
+}
+
+.img-block-full img{
+    object-fit: cover;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.box {
+    position: relative;
+    overflow:hidden;
+    width:250px;
+    height:200px;
+ }
+ 
+ .box img {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:250px;
+    height:200px;
+    object-fit:cover;
+ } 
