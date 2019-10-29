@@ -6,6 +6,7 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 
+
 from .models import *
 from .utils import *
 from .forms import CarForm
@@ -52,20 +53,24 @@ class CarDetail(ObjectDetailMixin, View):
     template = 'bulletin_board/car_detail.html'
 
 class CarCreate(LoginRequiredMixin, ObjectCreateMixin, View):
+    login_url = '/user/login/'
     model_form = CarForm
     template = 'bulletin_board/car_create_form.html'
-    raise_exception = True
+    
+    
 
 class CarUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):
+    login_url = '/user/login/'
     model = Car
     model_form = CarForm
     template = 'bulletin_board/car_update_form.html'
-    raise_exception = True
+    
 
 class CarDelete(LoginRequiredMixin, ObjectDeleteMixin, View):
+    login_url = '/user/login/'
     model = Car
     template = 'bulletin_board/car_delete_form.html'
     redirect_url = 'cars_list_url'
-    raise_exception = True
+    
 
 
