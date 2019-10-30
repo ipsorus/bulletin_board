@@ -115,3 +115,47 @@ a.edit, a.delete {
     cursor: pointer;
 
 }
+
+.item-params-list {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    column-gap: 15px;
+    -webkit-column-gap: 15px;
+    -moz-column-gap: 15px;
+    margin-bottom: -8px;
+    line-height: 20px;
+}
+ol, ul {
+    list-style: none;
+}
+
+.item-params {
+    font-size: 16px;
+    line-height: 25px;
+}
+.item-view-block {
+    
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.item-params-list-item {
+    min-width: 260px;
+    padding-bottom: 8px;
+    font-size: 16px;
+    page-break-inside: avoid;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-params-label {
+    color: rgba(0,0,0,.44);
+}
+ label, li, span, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}

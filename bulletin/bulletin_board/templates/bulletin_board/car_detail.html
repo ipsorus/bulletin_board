@@ -24,7 +24,7 @@
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   </ol>
 
-                  <div class="carousel-inner d-flex align-content-center flex-wrap mx-auto gallery-img-wrapper ">
+                  <div class="carousel-inner d-flex align-content-center flex-wrap mx-auto gallery-img-wrapper">
                       
                     {% for image in car.all_images.all %}
                     
@@ -53,51 +53,30 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
-                <div class="col-2">
-                    <ul class="item-params-list">
-                    <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>Mercedes-Benz </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>E-класс </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>W212/S212/C207/A207 рестайлинг (2013—2016) </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>E 200 2.0 7G-Tronic (184 л.с.) </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>2015 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>54300&nbsp;км </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>не битый </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>2 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>WDD21203*1B****93 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>седан </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>4 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>бензин </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>автомат </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>задний </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>левый </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>чёрный </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>Avantgarde Особая серия </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>Москва, Коровинское шоссе </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>2.0&nbsp;л </li>
-                    </ul>
-                </div>
-                <div class="col-2">
-                    <ul class="item-params-list">
-                    <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>Mercedes-Benz </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>E-класс </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>W212/S212/C207/A207 рестайлинг (2013—2016) </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>E 200 2.0 7G-Tronic (184 л.с.) </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>2015 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>54300&nbsp;км </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>не битый </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>2 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>WDD21203*1B****93 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>седан </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>4 </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>бензин </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>автомат </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>задний </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>левый </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>чёрный </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>Avantgarde Особая серия </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>Москва, Коровинское шоссе </li>
-                    <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>2.0&nbsp;л </li>
-                    </ul>
+                <div class="item-view-block">
+                  <div class="item-params">
+                      <ul class="item-params-list">
+                          <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>{{ car.car_brand }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>{{ car.car_model }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>{{ car.car_generation }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>{{ car.modif }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>{{ car.year_of_manufacture }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>{{ car.car_mileage }} км </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>{{ car.condition }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>{{ car.owners }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>{{ car.vin_number }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>{{ car.type_chassis }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>{{ car.doors }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>{{ car.engine_type }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>{{ car.transmission }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>{{ car.drive }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>{{ car.steering_side }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>{{ car.color }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>{{ car.equipment }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>{{ car.view_place }} </li>
+                          <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>{{ car.engine_volume }} л </li>
+                      </ul>
+                   </div>
                 </div>
 
                 <div class="d-flex mt-5 justify-content-center">
