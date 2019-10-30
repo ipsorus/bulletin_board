@@ -5,32 +5,45 @@
 {% endblock %}
 
 {% block content %}
-
-<div class="card-body">
-  
+<div class="row mb-3">
     <div class="col-md-8">
-        <h2>{{ car.car_title }}</h2>
-      </div>
-        <div class="row">
-          <div class="col-md-8" style="background-color: rgb(90, 88, 88);">
+        <h2>{{ car.car_title }}</h2> 
+    </div>
+    <div class="col-md-4 ml-auto">
+       <h2>{{ car.price }} Р</h2>
+    </div>
 
-                <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+</div>
+
+        <div class="row">
+          <div class="col-md-7">
+                <div id="carouselExampleIndicators" class="carousel">
                   <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   </ol>
-                  <div class="carousel-inner img-block-full">
+
+                  <div class="carousel-inner d-flex align-content-center flex-wrap mx-auto gallery-img-wrapper ">
+                      
                     {% for image in car.all_images.all %}
+                    
                     {% if forloop.first %}
-                        <div class="carousel-item active">
+                    
+                        <div class="carousel-item active" style=" border:5px #000;">
+                        <span class="gallery-img-cover" style="background-image: url('{{ image.image_data_link.url }}')"></span>  
                     {% else %}
+                    
                         <div class="carousel-item">
+                            <span class="gallery-img-cover" style="background-image: url('{{ image.image_data_link.url }}')"></span>
                     {% endif %}
-                            <img src="{{ image.image_data_link.url }}" alt="{{ car.car_title }}">
+                    
+                            <img src="{{ image.image_data_link.url }}" style="position: relative; width: auto; height: auto;" alt="{{ car.car_title }}">
                         </div>
                     {% endfor %}
-                  </div>
+     
+                </div>
+
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -40,24 +53,70 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
-              </div>
+                <div class="col-2">
+                    <ul class="item-params-list">
+                    <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>Mercedes-Benz </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>E-класс </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>W212/S212/C207/A207 рестайлинг (2013—2016) </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>E 200 2.0 7G-Tronic (184 л.с.) </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>2015 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>54300&nbsp;км </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>не битый </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>2 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>WDD21203*1B****93 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>седан </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>4 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>бензин </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>автомат </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>задний </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>левый </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>чёрный </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>Avantgarde Особая серия </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>Москва, Коровинское шоссе </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>2.0&nbsp;л </li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <ul class="item-params-list">
+                    <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>Mercedes-Benz </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>E-класс </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>W212/S212/C207/A207 рестайлинг (2013—2016) </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>E 200 2.0 7G-Tronic (184 л.с.) </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>2015 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>54300&nbsp;км </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>не битый </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>2 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>WDD21203*1B****93 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>седан </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>4 </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>бензин </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>автомат </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>задний </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>левый </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>чёрный </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>Avantgarde Особая серия </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>Москва, Коровинское шоссе </li>
+                    <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>2.0&nbsp;л </li>
+                    </ul>
+                </div>
 
+                <div class="d-flex mt-5 justify-content-center">
+                    {{ car.car_description }}
+                </div>
+              </div>
+ 
 
           <div class="col-md-4">
-              <div class="card-body">
+
                 <h5 class="card-title">{{ car.car_title }}</h5>
                 <p class="card-text"><small class="text-muted">{{ car.price }} Р</small></p>
                 <p class="card-text"><small class="text-muted">{{ car.car_mileage }} км, {{ car.engine_type }}, {{ car.engine_volume }} л, {{ car.transmission }}</small></p>                  
                 <p class="card-text"><small class="text-muted">{{ car.view_place }}</small></p>
                 <p class="card-text"><small class="text-muted">{{ car.pub_date }}</small></p>
-              </div>
+
             </div>
-          </div>
+
 
 </div>
-
-    <p>
-        {{ car.car_description }}
-    </p>
-    
+ 
 {% endblock %}
