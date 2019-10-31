@@ -1,15 +1,21 @@
+import requests
+
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 
 
 from .models import *
 from .utils import *
 from .forms import CarForm
+from user.forms import RegisterForm
+from user.models import FavoriteCar
 
 from django.db.models import Q
 
@@ -51,6 +57,20 @@ def cars_list(request):
 class CarDetail(ObjectDetailMixin, View):
     model = Car
     template = 'bulletin_board/car_detail.html'
+
+    @login_required(login_url= '/user/login/')
+    def add_remove_favoritecar(self, request, car_id):
+        try:
+            favorite_car = FavoriteCar.objects.get(user=request.user, car=car_id)
+            favorite_car.delete()
+        except favorite_car.DoesNotExist:
+            favorite_car = FavoriteCar.objects.create(
+                            user=request.user,
+                            car=Car.objects.get(id=car_id))
+            favorite_car.save()
+        return HttpResponseRedirect('/bulletin_board/')
+
+
 
 class CarCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     login_url = '/user/login/'
