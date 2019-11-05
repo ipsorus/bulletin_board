@@ -1,3 +1,5 @@
+import requests
+
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -51,6 +53,9 @@ def cars_list(request):
 class CarDetail(ObjectDetailMixin, View):
     model = Car
     template = 'bulletin_board/car_detail.html'
+
+
+
 
 class CarCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     login_url = '/user/login/'
