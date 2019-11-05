@@ -19,6 +19,7 @@ from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls import include
 
 from .views import redirect_main_page
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('bulletin_board/', include('bulletin_board.urls')),
     path('user/', include('user.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     

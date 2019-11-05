@@ -70,7 +70,7 @@ def get_image(image_html):
 
             images.append(url)
 
-            if len(images) < 3:
+            if len(images) < 4:
                 continue
             else:
                 break

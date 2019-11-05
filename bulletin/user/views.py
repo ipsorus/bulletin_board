@@ -17,6 +17,7 @@ class RegisterView(CreateView):
     success_url = reverse_lazy('user:login')
 
 class FavoriteView(View):
+    template_name = None
 
     model = None
  

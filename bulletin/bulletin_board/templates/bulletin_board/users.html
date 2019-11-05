@@ -1,0 +1,15 @@
+{% extends 'bulletin_board/base_main.html' %}
+
+
+{% block title %}
+    Продажа авто в Москве и области
+{% endblock %}
+
+{% block content %}
+    {% include "_modal.html" %}   
+    
+    {% for usr in users %}
+    <h1>{{ forloop.counter }}. {{ usr.username }}</h1>
+    <h1></h1>
+    {% endfor %}
+{% endblock %}  

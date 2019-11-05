@@ -6,6 +6,8 @@ from tempfile import NamedTemporaryFile
 from django.utils import timezone
 
 from django.shortcuts import reverse
+from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Car(models.Model):
@@ -13,7 +15,7 @@ class Car(models.Model):
     car_title = models.CharField('Заголовок объявления', max_length=100, blank=True, db_index=True)
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     price = models.IntegerField('Цена', blank=True, null= True)
-    seller = models.CharField('Продавец', max_length=100, blank=True)
+    seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, verbose_name = "Продавец")
     phone = models.CharField('Телефон', max_length=30, blank=True)
     car_description = models.TextField('Описание', blank=True)
     avito_item = models.CharField('Авито номер', max_length=100, blank=True)
@@ -55,7 +57,7 @@ class Car(models.Model):
     def __str__(self):
         return self.car_title
 
-class Photos(models.Model):
+class Photo(models.Model):
 
     image_data_link = models.ImageField(upload_to='photos/%Y/%m/%d')
     image_url = models.URLField(blank=True)

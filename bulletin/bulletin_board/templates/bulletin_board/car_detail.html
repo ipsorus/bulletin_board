@@ -19,17 +19,20 @@
           <div class="col-md-7">
                 <div id="carouselExampleIndicators" class="carousel">
                   <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                  {% for image in car.all_images.all %}
+                  {% if forloop.first %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                  {% endif %}  
+                  {% if not forloop.last %}
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}"></li>
+                  {% endif %}
+                  {% endfor %}
                   </ol>
 
                   <div class="carousel-inner d-flex align-content-center flex-wrap mx-auto gallery-img-wrapper">
                       
                     {% for image in car.all_images.all %}
-                    
                     {% if forloop.first %}
-                    
                         <div class="carousel-item active" style=" border:5px #000;">
                         <span class="gallery-img-cover" style="background-image: url('{{ image.image_data_link.url }}')"></span>  
                     {% else %}
