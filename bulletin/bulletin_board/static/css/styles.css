@@ -51,7 +51,7 @@ a.edit, a.delete {
  } 
 
  .gallery-img-wrapper {
-    border: 1px solid rgb(199, 199, 199);
+    border: 1px solid rgb(216, 216, 216);
 
     text-align: center;
     display: inline-block;
@@ -134,10 +134,9 @@ ol, ul {
     font-size: 16px;
     line-height: 25px;
 }
-.item-view-block {
-    
+.item-view-block {    
     padding: 20px 0;
-    border-top: 1px solid #e0e0e0;
+
 }
 
 .item-params-list-item {

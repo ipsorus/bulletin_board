@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    {% include "_modal.html" %}   
+    {% include "bulletin_board/includes/_modal.html" %}   
     
     {% for usr in users %}
     <h1>{{ forloop.counter }}. {{ usr.username }}</h1>

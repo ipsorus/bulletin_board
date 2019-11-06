@@ -1,7 +1,7 @@
 {% extends 'bulletin_board/base_main.html' %}
 
 {% block title %}
-    Create car - {{ block.super }}
+    Добавить объявление - {{ block.super }}
 {% endblock %}
 
 {% block content %}
@@ -19,6 +19,7 @@
             </div>
         {% endfor %}
     
-        <button type="submit" name="button" class="btn btn-primary">Create car</button>
+        <button type="submit" name="button" class="btn btn-primary">Добавить объявление</button>
+        <a href="{% url 'cars_list_url' %}">Отмена</a>
     </form>
 {% endblock %}
