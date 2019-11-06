@@ -1,5 +1,3 @@
-import requests
-
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -8,10 +6,11 @@ from django.views.generic import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 
+from django.contrib.auth.models import User
 
 from .models import *
 from .utils import *
-from .forms import CarForm
+from .forms import *
 
 from django.db.models import Q
 
@@ -46,22 +45,23 @@ def cars_list(request):
         'next_url': next_url
     }
 
-
     return render(request,'bulletin_board/index.html', context=context)
 
+
+def users_list(request):
+    users = User.objects.all()
+    context={'users': users}
+
+    return render(request,'bulletin_board/users.html', context=context)
 
 class CarDetail(ObjectDetailMixin, View):
     model = Car
     template = 'bulletin_board/car_detail.html'
 
-
-
-
 class CarCreate(LoginRequiredMixin, ObjectCreateMixin, View):
     login_url = '/user/login/'
     model_form = CarForm
-    template = 'bulletin_board/car_create_form.html'
-    
+    template = 'bulletin_board/car_create_form.html'    
     
 
 class CarUpdate(LoginRequiredMixin, ObjectUpdateMixin, View):

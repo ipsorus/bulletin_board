@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
+from django.core.files.base import ContentFile
 
 from .models import *
 
@@ -21,9 +22,16 @@ class ObjectCreateMixin:
         return render(request, self.template, context={'form': form})
 
     def post(self, request):
-        bound_form = self.model_form(request.POST)
+        bound_form = self.model_form(request.POST, request.FILES)
         if bound_form.is_valid():
+            new_obj = bound_form.save(commit=False)
+            new_obj.seller = request.user
             new_obj = bound_form.save()
+            for f in request.FILES.getlist('all_images'):
+                data = f.read() #Если файл целиком умещается в памяти
+                photo = Photo(car=new_obj)
+                photo.image_data_link.save(f.name, ContentFile(data))
+                photo.save()
             return redirect(new_obj)
         return render(request, self.template, context={'form': bound_form})
 
@@ -39,12 +47,17 @@ class ObjectUpdateMixin:
 
     def post(self, request, id):
         obj = self.model.objects.get(id__iexact=id)
-        bound_form = self.model_form(request.POST, instance=obj)
+        bound_form = self.model_form(request.POST, request.FILES, instance=obj)
 
         if bound_form.is_valid():
             new_obj = bound_form.save()
+            for f in request.FILES.getlist('all_images'):
+                data = f.read() #Если файл целиком умещается в памяти
+                photo = Photo(car=new_obj)
+                photo.image_data_link.save(f.name, ContentFile(data))
+                photo.save()
             return redirect(new_obj)
-        return render(redirect, self.template, context={'form': bound_form, self.model.__name.lower(): obj})
+        return render(redirect, self.template, context={'form': bound_form, self.model.__name__.lower(): obj})
 
 class ObjectDeleteMixin:
     model = None
