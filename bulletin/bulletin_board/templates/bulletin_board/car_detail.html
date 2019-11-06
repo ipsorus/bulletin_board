@@ -33,8 +33,8 @@
                       
                     {% for image in car.all_images.all %}
                     {% if forloop.first %}
-                        <div class="carousel-item active" style=" border:5px #000;">
-                        <span class="gallery-img-cover" style="background-image: url('{{ image.image_data_link.url }}')"></span>  
+                        <div class="carousel-item active">
+                            <span class="gallery-img-cover" style="background-image: url('{{ image.image_data_link.url }}')"></span>  
                     {% else %}
                     
                         <div class="carousel-item">
@@ -56,6 +56,16 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div>
+                </div>
+
+                <div class="col-md-5">
+                  <p class="card-text"><button type="button" class="btn btn-lg btn-primary" disabled>{{ user.username }}</button></p>
+                  <p class="card-text"><h2>{{ car.phone }}</h2></p>                       
+                  <p class="card-text"><small class="text-muted">Добавлено: {{ car.pub_date }}</small></p>
+                </div>
+            </div>
+                <div class="row">
+                  <div class="col-md-8">
                 <div class="item-view-block">
                   <div class="item-params">
                       <ul class="item-params-list">
@@ -88,17 +98,7 @@
               </div>
  
 
-          <div class="col-md-4">
-
-                <h5 class="card-title">{{ car.car_title }}</h5>
-                <p class="card-text"><small class="text-muted">{{ car.price }} Р</small></p>
-                <p class="card-text"><small class="text-muted">{{ car.car_mileage }} км, {{ car.engine_type }}, {{ car.engine_volume }} л, {{ car.transmission }}</small></p>                  
-                <p class="card-text"><small class="text-muted">{{ car.view_place }}</small></p>
-                <p class="card-text"><small class="text-muted">{{ car.pub_date }}</small></p>
-
-            </div>
-
-
+         
 </div>
  
 {% endblock %}

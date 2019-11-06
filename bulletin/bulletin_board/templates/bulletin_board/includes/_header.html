@@ -19,7 +19,7 @@
 
     <!-- Navbar -->
     <!-- Important: columns can be used directly in navbar since it is d-flex -->
-    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #3da2eb;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -33,22 +33,23 @@
             </div>   
             <div class="ml-auto">   
             {% if user.is_anonymous %}
-                <button class="signup-btn btn btn-primary" type="button" name="button">Sign up</button>  
+              <a href="/user/register/" class="signup-btn btn btn-primary" tabindex="-1" type="button" role="button">Регистрация</a>
+                
             {% endif %}    
                     {% if not user.is_anonymous %}
                       <span>
-                        Your are logged in as
+                        Вы вошли, как
                         <strong>{{ user }}</strong>.
                       </span>
-                      <a href="{% url 'logout' %}" class="logout-btn btn btn-danger" role="button">Log out</a>
+                      <a href="{% url 'logout' %}" class="logout-btn btn btn-danger" role="button">Выйти</a>
                     {% else %}
-                      <button class="login-btn btn btn-primary" type="button" name="button">Log in</button>
+                      <a href="/user/login/" class="login-btn btn btn-primary" tabindex="-1" type="button" role="button">Авторизация</a>
                     {% endif %}    
               </div>  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline my-2 my-lg-0 ml-auto" action="{% url 'cars_list_url' %}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Поиск авто" aria-label="Search" name="search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Искать</button>
+                <button class="btn btn-dark my-2 my-sm-0" type="submit">Искать</button>
             </form>
         </div>
     </nav>

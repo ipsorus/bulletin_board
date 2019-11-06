@@ -6,11 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    {% include "bulletin_board/_modal.html" %}
+    {% include 'bulletin_board/includes/_modal.html' %}
     {% for car in page_object.object_list %}
         {% include 'bulletin_board/includes/car_card_template.html' %}
-    {% endfor %}    
-
+    {% endfor %}
 {% endblock %}  
 
 
