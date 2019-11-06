@@ -33,7 +33,7 @@
             </div>   
             <div class="ml-auto">   
             {% if user.is_anonymous %}
-              <a href="/user/register/" class="signup-btn btn btn-primary" tabindex="-1" type="button" role="button">Регистрация</a>
+              <a href="/user/register/"><button type="button" class="btn btn-outline-light">Регистрация</button></a>
                 
             {% endif %}    
                     {% if not user.is_anonymous %}
@@ -43,13 +43,13 @@
                       </span>
                       <a href="{% url 'logout' %}" class="logout-btn btn btn-danger" role="button">Выйти</a>
                     {% else %}
-                      <a href="/user/login/" class="login-btn btn btn-primary" tabindex="-1" type="button" role="button">Авторизация</a>
+                      <a href="/user/login/"><button type="button" class="btn btn-outline-light">Авторизация</button></a>
                     {% endif %}    
               </div>  
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form class="form-inline my-2 my-lg-0 ml-auto" action="{% url 'cars_list_url' %}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Поиск авто" aria-label="Search" name="search">
-                <button class="btn btn-dark my-2 my-sm-0" type="submit">Искать</button>
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Искать</button>
             </form>
         </div>
     </nav>

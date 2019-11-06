@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 5px;
+}
+
 .admin-panel{
     border: 1px solid #999;
     border-radius: 2px;

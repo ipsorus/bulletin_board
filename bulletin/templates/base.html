@@ -13,10 +13,6 @@
         {% endblock %}
     </title>
     {% block stylesheets %}
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-    <!-- Font awesome CSS -->
-    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
     <!-- Custom CSS -->
     <style media="screen">
       .invalid {
@@ -76,9 +72,11 @@
     </div>
 </div>
 
-{% if request.user.is_authenticated and request.user.is_staff %}
+{% if request.user.is_authenticated %}
     <div class="admin-panel align-items-center">
+        {% if request.user.is_authenticated and request.user.is_staff %}
         <a href='/admin' class="btn btn-outline-info">Админка</a>
+        {% endif %}
         {% block admin-panel %}{% endblock %}
     </div>
 {% endif %}
@@ -92,8 +90,6 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
  {% endblock scripts %}
-
- {% block extrascripts %}{% endblock extrascripts %}
 
 </body>
 </html>
