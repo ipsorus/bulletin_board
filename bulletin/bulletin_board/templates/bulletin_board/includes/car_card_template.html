@@ -13,13 +13,13 @@
     </a>
   </div>
   <div class="col-md-6">
-      <a href="{{ car.get_absolute_url }}">
-        <h5 class="card-title">{{ car.car_title }}</h5>
+      <a class="text-decoration-none" href="{{ car.get_absolute_url }}">
+        <h5 class="card-title ">{{ car.car_title }}</h5>
       </a>
       <p class="card-text"><small class="text-muted">{{ car.price }} Р</small></p>
       <p class="card-text"><small class="text-muted">{{ car.car_mileage }} км, {{ car.engine_type }}, {{ car.engine_volume }} л, {{ car.transmission }}</small></p>                  
       <p class="card-text"><small class="text-muted">{{ car.view_place }}</small></p>
-      <p class="card-text"><small class="text-muted">{{ car.pub_date }}</small></p>
+      <p class="card-text"><button type="button" class="btn btn-outline-secondary" disabled>{{ car.pub_date }}</button></p>
   </div>
 </div>
 

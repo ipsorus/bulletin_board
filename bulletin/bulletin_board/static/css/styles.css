@@ -53,7 +53,7 @@ a.edit, a.delete {
  } 
 
  .gallery-img-wrapper {
-    border: 1px solid rgb(216, 216, 216);
+    border: 1px solid rgba(182, 182, 182, 0.747);
 
     text-align: center;
     display: inline-block;
@@ -68,19 +68,19 @@ a.edit, a.delete {
 .gallery-img-cover {
     position: absolute;
     display: block;    
-    top: -13px;    
-    left: -13px;    
-    right: -13px;    
-    bottom: -13px;    
+    top: -60px;    
+    left: 0px;    
+    right: 0px;    
+    bottom: -60px;    
     background: no-repeat center;    
     background-image: none;
     background-size: auto;    
     background-image: none;    
     background-size: auto;    
     background-size: cover;    
-    -webkit-filter: blur(13px);    
-    filter: blur(13px);    
-    opacity: .4;
+    -webkit-filter: blur(10px);    
+    filter: blur(10px);    
+    opacity: .6;
 }
 
 .gallery-img-frame {
@@ -113,7 +113,6 @@ a.edit, a.delete {
 }
 
 .gallery-img-frame {
-
     cursor: pointer;
 
 }
@@ -138,7 +137,6 @@ ol, ul {
 }
 .item-view-block {    
     padding: 20px 0;
-
 }
 
 .item-params-list-item {
@@ -159,4 +157,27 @@ ol, ul {
     border: 0;
     font: inherit;
     vertical-align: baseline;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+    background-color: rgb(253, 254, 255);
+}
+
+.carousel-indicators li {
+    box-sizing: content-box;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    width: 30px;
+    height: 5px;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: rgb(0, 82, 163);
+    background-clip: padding-box;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: .5;
+    transition: opacity .6s ease;
 }
