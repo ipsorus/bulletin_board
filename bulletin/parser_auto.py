@@ -31,7 +31,6 @@ def get_auto_item():
         avito_item_number = parser_lib.get_item_number(soup)
         title = parser_lib.get_title(soup)
         price = parser_lib.get_price(soup)
-        #seller_id = 1
         phone = parser_lib.get_phone(soup)
         description = parser_lib.get_description(soup)
         all_specs = parser_lib.get_all_specs(soup)

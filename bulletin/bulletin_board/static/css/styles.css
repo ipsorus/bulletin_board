@@ -49,8 +49,6 @@ a.edit, a.delete {
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:250px;
-    height:200px;
     object-fit:cover;
  } 
 

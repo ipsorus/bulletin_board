@@ -1,9 +1,13 @@
+{% load thumbnail %}
+
 <div class="row mb-5">
   <div class="col-md-3 ml-auto">
     <a href="{{ car.get_absolute_url }}">
     <div class="box">
-      {% with car.all_images.all.0 as image%}
-            <img src="{{ image.image_data_link.url }}" alt="{{ car.car_title }}">
+      {% with car.all_images.all.0 as img %}
+          {% thumbnail img.image_data_link "250x200" crop="center" as im %}
+              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ car.car_title }}">
+          {% endthumbnail %}  
       {% endwith %}
     </div>
     </a>

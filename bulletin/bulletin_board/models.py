@@ -9,6 +9,8 @@ from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
 
+from sorl.thumbnail import ImageField
+
 
 class Car(models.Model):
    
@@ -59,7 +61,7 @@ class Car(models.Model):
 
 class Photo(models.Model):
 
-    image_data_link = models.ImageField(upload_to='photos/%Y/%m/%d')
+    image_data_link = ImageField(upload_to='photos/%Y/%m/%d')
     image_url = models.URLField(blank=True)
     car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='all_images')
 
