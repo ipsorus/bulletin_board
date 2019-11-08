@@ -61,7 +61,7 @@ class Car(models.Model):
 
 class Photo(models.Model):
 
-    image_data_link = ImageField(upload_to='photos/%Y/%m/%d', blank=True,)
+    image_data_link = ImageField(upload_to='photos/%Y/%m/%d', blank=True)
     image_url = models.URLField(blank=True)
     car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='all_images')
 
