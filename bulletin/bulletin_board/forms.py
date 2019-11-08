@@ -3,7 +3,7 @@ from .models import *
 
 
 class CarForm(forms.ModelForm):
-    all_images = forms.ImageField(label=u'Фотографии', widget=forms.FileInput(attrs={'multiple': 'multiple'}))
+    all_images = forms.ImageField(label=u'Фотографии', widget=forms.FileInput(attrs={'multiple': 'multiple'}), required=False)
 
 
     class Meta:

@@ -18,11 +18,11 @@ class Car(models.Model):
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     price = models.IntegerField('Цена', blank=True, null= True)
     seller = models.ForeignKey(User, default=1, on_delete=models.CASCADE, verbose_name = "Продавец")
-    phone = models.CharField('Телефон', max_length=30, blank=True)
+    phone = models.CharField('Телефон', default='+74950000000', max_length=30, blank=True)
     car_description = models.TextField('Описание', blank=True)
     avito_item = models.CharField('Авито номер', max_length=100, blank=True)
-    car_brand = models.CharField('Марка авто', max_length=100, blank=True, db_index=True)
-    car_model = models.CharField('Модель авто', max_length=100, blank=True, db_index=True)
+    car_brand = models.CharField('Марка авто', max_length=100, db_index=True)
+    car_model = models.CharField('Модель авто', max_length=100, db_index=True)
     car_generation = models.CharField('Поколение', max_length=100, blank=True)
     modif = models.CharField('Модификация', max_length=100, blank=True)
     year_of_manufacture = models.IntegerField('Год производства', null=True, db_index=True)
@@ -61,7 +61,7 @@ class Car(models.Model):
 
 class Photo(models.Model):
 
-    image_data_link = ImageField(upload_to='photos/%Y/%m/%d')
+    image_data_link = ImageField(upload_to='photos/%Y/%m/%d', blank=True,)
     image_url = models.URLField(blank=True)
     car = models.ForeignKey(Car, on_delete = models.CASCADE, related_name='all_images')
 
