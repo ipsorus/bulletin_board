@@ -7,9 +7,33 @@
 
 {% block content %}
     {% include 'bulletin_board/includes/_modal.html' %}
+    <div class="row mb-5 justify-content-md-center">
+    <div class="col-md-3 mr-10">
+    <form action="{% url 'cars_list_url' %}">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Марка авто</label>
+                <input class="form-control mr-sm-2" type="search" placeholder="Марка" aria-label="Search" name="search">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput2">Модель авто</label>
+                <input class="form-control mr-sm-2" type="search" placeholder="Модель" aria-label="Search" name="search">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput3">Год выпуска</label>
+                <input class="form-control mr-sm-2" type="search" placeholder="Год" aria-label="Search" name="search">
+            </div>
+           
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Искать</button>
+          </form>
+        </div>
+          <div class="col-md-9">
+    <ul class="list-unstyled">
     {% for car in page_object.object_list %}
         {% include 'bulletin_board/includes/car_card_template.html' %}
     {% endfor %}
+    </ul>
+</div>
+</div>
 {% endblock %}  
 
 
