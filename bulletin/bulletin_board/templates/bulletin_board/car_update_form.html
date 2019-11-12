@@ -1,7 +1,7 @@
 {% extends 'bulletin_board/base_main.html' %}
 
 {% block title %}
-    Редактировать объявление "{{ car.car_title }}" - {{ block.super }}
+    Редактировать объявление "{{ car.car_brand|title }} {{ car.car_model|title }}, {{ car.year_of_manufacture }}" - {{ block.super }}
 {% endblock %}
 
 {% block content %}

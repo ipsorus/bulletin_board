@@ -12,7 +12,6 @@
     <div class="col-md-4 ml-auto">
        <h2>{{ car.price }} Р</h2>
     </div>
-
 </div>
 
         <div class="row">
@@ -71,23 +70,57 @@
                       <ul class="item-params-list">
                           <li class="item-params-list-item"> <span class="item-params-label">Марка: </span>{{ car.car_brand|title }} </li>
                           <li class="item-params-list-item"> <span class="item-params-label">Модель: </span>{{ car.car_model|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>{{ car.car_generation }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>{{ car.modif }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>{{ car.year_of_manufacture }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>{{ car.car_mileage }} км </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>{{ car.condition|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>{{ car.owners }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>{{ car.vin_number }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>{{ car.type_chassis|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>{{ car.doors }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>{{ car.engine_type|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>{{ car.transmission|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>{{ car.drive|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>{{ car.steering_side|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>{{ car.color|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>{{ car.equipment }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>{{ car.view_place|title }} </li>
-                          <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>{{ car.engine_volume }} л </li>
+                          {% if car.car_generation %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Поколение: </span>{{ car.car_generation }} </li>
+                          {% endif %}
+                          {% if car.modif %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Модификация: </span>{{ car.modif }} </li>
+                          {% endif %}
+                          {% if car.year_of_manufacture %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Год выпуска: </span>{{ car.year_of_manufacture }} </li>
+                          {% endif %}
+                          {% if car.car_mileage %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Пробег: </span>{{ car.car_mileage }} км </li>
+                          {% endif %}
+                          {% if car.condition %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Состояние: </span>{{ car.condition|title }} </li>
+                          {% endif %}
+                          {% if car.owners %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Владельцев по ПТС: </span>{{ car.owners }} </li>
+                          {% endif %}
+                          {% if car.vin_number %}
+                            <li class="item-params-list-item"> <span class="item-params-label">VIN или номер кузова: </span>{{ car.vin_number }} </li>
+                          {% endif %}
+                          {% if car.type_chassis %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Тип кузова: </span>{{ car.type_chassis|title }} </li>
+                          {% endif %}
+                          {% if car.doors %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Количество дверей: </span>{{ car.doors }} </li>
+                          {% endif %}
+                          {% if car.engine_type %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Тип двигателя: </span>{{ car.engine_type|title }} </li>
+                          {% endif %}
+                          {% if car.engine_volume %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Объём двигателя: </span>{{ car.engine_volume }} л </li>
+                          {% endif %}
+                          {% if car.transmission %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Коробка передач: </span>{{ car.transmission|title }} </li>
+                          {% endif %}
+                          {% if car.drive %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Привод: </span>{{ car.drive|title }} </li>
+                          {% endif %}
+                          {% if car.steering_side %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Руль: </span>{{ car.steering_side|title }} </li>
+                          {% endif %}
+                          {% if car.color %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Цвет: </span>{{ car.color|title }} </li>
+                          {% endif %}
+                          {% if car.equipment %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Комплектация: </span>{{ car.equipment }} </li>
+                          {% endif %}
+                          {% if car.view_place %}
+                            <li class="item-params-list-item"> <span class="item-params-label">Место осмотра: </span>{{ car.view_place|title }} </li>
+                          {% endif %}
                       </ul>
                    </div>
                 </div>

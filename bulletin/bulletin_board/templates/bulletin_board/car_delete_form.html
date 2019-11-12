@@ -1,15 +1,23 @@
 {% extends 'bulletin_board/base_main.html' %}
 
 {% block title %}
-    Удаление объявления "{{ car.car_title }}" - {{ block.super }}
+    Удаление объявления "{{ car.car_brand|title }} {{ car.car_model|title }}, {{ car.year_of_manufacture }}" - {{ block.super }}
 {% endblock %}
 
 {% block content %}
     <form action="{{ car.car_delete_url }}" method="post">
         {% csrf_token %}
-        <h2>Вы уверены что хотите удалить объявление <b>"{{ car.car_title }}"</b>?</h2>
-        <a href="{{ car.get_absolute_url }}">Отмена</a>
-        <button class="submit" name="button" class="btn btn-danger">Удалить</button>
+        <div class="card">
+                <div class="card-header">
+                  Предупреждение
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Удаление "{{ car.car_brand|title }} {{ car.car_model|title }}, {{ car.year_of_manufacture }}"</h5>
+                  <p class="card-text">Вы уверены что хотите удалить объявление?</p>
+                  <button class="submit" name="button" class="btn btn-danger">Удалить</button>
+                  <a href="{{ car.get_absolute_url }}">Отмена</a>
+                </div>
+              </div>
+        
     </form>
-
 {% endblock %}
